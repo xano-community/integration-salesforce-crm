@@ -16,7 +16,7 @@ function "salesforce_query" {
 
     precondition ($api_result.response.status == 200) {
       error_type = "standard"
-      error = "Salesforce API error: " ~ $api_result.response.result
+      error = "Salesforce API error: " ~ ($api_result.response.result|json_encode)
     }
 
     var $result { value = $api_result.response.result }

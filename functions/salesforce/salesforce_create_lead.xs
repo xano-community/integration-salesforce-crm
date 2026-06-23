@@ -47,7 +47,7 @@ function "salesforce_create_lead" {
 
     precondition ($api_result.response.status == 201) {
       error_type = "standard"
-      error = "Salesforce API error: " ~ $api_result.response.result
+      error = "Salesforce API error: " ~ ($api_result.response.result|json_encode)
     }
 
     var $result { value = $api_result.response.result }
